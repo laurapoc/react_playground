@@ -1,5 +1,5 @@
 import React, { Fragment, Component } from "react";
-import axios from "axios";
+// import axios from "axios";
 
 import Post from "../components/Posts/Post/Post";
 
@@ -8,28 +8,28 @@ class PlaygroundContainer extends Component {
     posts: [],
   };
   componentDidMount() {
-    axios
-      .get("https://vitrazai.lt/wp-json/wp/v2/media/287")
+    fetch("https://vitrazai.lt/wp-json/wp/v2/media")
       .then((response) => {
-        //   console.timeLog(this.posts);
-        // console.log(response.data);
-        const posts = response.data;
+        return response.json();
+      })
+      .then((posts) => {
         this.setState({ posts: posts });
-        console.log(posts);
+        // console.log(posts);
       });
   }
 
   render() {
-    // const posts = this.state.posts.map((post) => {
-    //     return <Post key={post.id} title={post.title} />;
-    // //   return this.state[post];
-    // });
+    const posts = this.state.posts.map((post) => {
+      // console.log(post);
+      return (
+        <li key={post.id}>
+          <Post  image={post.source_url} title={post.title.rendered} alt={post.title.rendered} />
+        </li>
+      );
+    });
     return (
       <Fragment>
-        <h1>This is my playground container</h1>
-        <h1>id: {this.state.posts.id}</h1>
-        <h1>id: {this.state.posts.id}</h1>
-        {/* {posts} */}
+        <ul>{posts}</ul>
       </Fragment>
     );
   }
