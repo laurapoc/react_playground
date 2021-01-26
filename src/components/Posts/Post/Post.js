@@ -4,11 +4,8 @@ import classes from "./Post.module.css";
 
 const post = (props) => (
   <article className={classes.post}>
-    {/* <div>{props.image}</div> */}
-    {/* <div>test title</div> */}
     <h2>{props.title}</h2>
-
-    <img src={props.image} alt={props.alt}  />
+    <img src={props.image} alt={props.alt} onClick={props.clicked}/>
   </article>
 );
 
