@@ -23,8 +23,9 @@ const PostList = () => {
     return () => (mounted = false);
   }, []);
 
-  const onClickImage = () => {
-    console.log("image clicked");
+  const onClickImage = (props) => {
+    // setPosts(posts.id);
+    console.log("image clicked, id: " + props.id);
   };
 
   const list = posts.map((post) => {
@@ -32,8 +33,8 @@ const PostList = () => {
     return (
       <Fragment key={post.slug}>
         <Modal>
-          {console.log(post.media_details.sizes.medium.source_url)}
-          <PostImage image={post.media_details.sizes.medium_large.source_url}/>
+          {/* {console.log(post)} */}
+          <PostImage />
         </Modal>
         <li className={classes.List}>
           <Post
@@ -41,6 +42,7 @@ const PostList = () => {
             title={post.title.rendered}
             alt={post.title.rendered}
             clicked={onClickImage}
+            id={post.id}
           />
         </li>
       </Fragment>

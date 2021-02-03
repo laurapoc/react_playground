@@ -4,6 +4,8 @@ const postImage = (props) => {
   // const singleImage = Object.keys(props.posts).map(post => {
   //     return {post};
   // })
+
+  
   return (
     <div>
       <h3>Test Modal Image</h3>
